@@ -1,6 +1,6 @@
 ---
 title: Course Introduction
-description: Introduction to Module 3: The AI-Robot Brain (NVIDIA Isaac™).
+description: Introduction to Module 3: The AI-Robot Brain (NVIDIA Isaac).
 slug: /module-03-ai-brain/course-introduction
 tags: [robotics, ai, nvidia, isaac]
 ---
