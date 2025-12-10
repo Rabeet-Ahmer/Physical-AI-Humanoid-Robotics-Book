@@ -1,5 +1,5 @@
 ---
-title: Capstone Project: The Autonomous Humanoid
+title: Capstone Project - The Autonomous Humanoid
 description: Final project where a simulated robot receives a voice command, plans a path, navigates obstacles, identifies an object using computer vision, and manipulates it.
 slug: /module-04-vla/capstone-project
 tags: [robotics, ai, vla, capstone, humanoid, simulation]

@@ -1,6 +1,6 @@
 ---
 title: Course Introduction
-description: Introduction to Module 4: Vision-Language-Action (VLA).
+description: Introduction to Module 4 - Vision-Language-Action (VLA).
 slug: /module-04-vla/course-introduction
 tags: [robotics, ai, vla, llm]
 ---
