@@ -1,8 +1,8 @@
 {
-  "label": "Module 3: AI Brain",
-  "position": 6,
+  "label": "Module 3: The AI-Robot Brain (NVIDIA Isaac™)",
+  "position": 3,
   "link": {
     "type": "generated-index",
-    "description": "The AI Brain: Imitation Learning and Teleoperation"
+    "description": "Advanced perception and training with NVIDIA Isaac."
   }
 }
