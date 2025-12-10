@@ -29,10 +29,12 @@ As a learner, I want Module 1 to have a consistent and logical structure, simila
 
 ### Functional Requirements
 
-- **FR-001**: Module 1 MUST adopt a consistent hierarchical structure for its documentation files, mirroring the organization of well-structured existing modules (e.g., Module 2, 3, or 4).
+- **FR-001**: Module 1 MUST strictly emulate all structural aspects of Module 2, including top-level categories, nesting depth, and file naming conventions, for its documentation files.
 - **FR-002**: The Module 1 Docusaurus sidebar MUST accurately reflect the new hierarchical structure, ensuring proper categorization and ordering of topics.
 - **FR-003**: The content from the original Module 1 description ("Module 1: The Robotic Nervous System (ROS 2) Focus: Middleware for robot control. ROS 2 Nodes, Topics, and Services. Bridging Python Agents to ROS controllers using rclpy. Understanding URDF (Unified Robot Description Format) for humanoids.") MUST be distributed into logical sub-sections within the new structure (e.g., "ROS 2 Nodes, Topics, and Services" might become its own `.md` file under a "Concepts" category).
-- **FR-004**: Each logical sub-section of Module 1 MUST have a dedicated Markdown file (e.g., `01-overview.md`, `02-nodes-topics-services.md`, etc.), along with appropriate `_category_.json` files for directory-based categories.
+- **FR-004**: Each logical sub-section of Module 1 MUST have a dedicated Markdown file, adhering to Module 2's file naming conventions (e.g., 'XX-topic.md'), along with appropriate _category_.json files that strictly emulate Module 2's category structure and nesting depth.
+- **FR-005**: Module 1's refactoring process MUST proactively identify and address potential Docusaurus metadata parsing issues (e.g., `YAMLException`) that may arise from changes to `_category_.json` files or Markdown front matter.
+- **FR-006**: Module 1's refactoring MUST ensure that all internal links within the module remain functional and correctly resolve to their new locations after file reordering and restructuring.
 
 ### Key Entities (include if feature involves data)
 
@@ -42,6 +44,14 @@ As a learner, I want Module 1 to have a consistent and logical structure, simila
 
 ### Measurable Outcomes
 
-- **SC-001**: Module 1's sidebar navigation structure achieves a consistency score of 95% when compared to Module 2, 3, or 4's structure (evaluated by visual inspection or automated script parsing of `_category_.json` and file names).
+- **SC-001**: Module 1's sidebar navigation structure achieves a consistency score of 95% when compared to Module 2's structure (evaluated by visual inspection or automated script parsing of `_category_.json` and file names).
 - **SC-002**: 100% of the original Module 1 content as provided in the feature description is present and logically distributed across the new sub-sections.
 - **SC-003**: Docusaurus build process for Module 1 completes without errors related to metadata or navigation structure.
+
+## Clarifications
+
+### Session 2025-12-11
+
+- Q: Which existing module's structure should Module 1 primarily emulate, or what are the key structural elements (e.g., number of top-level sections, naming conventions for files/categories) that define the "good" structure? → A: Module 2's structure
+- Q: What specific structural elements within Module 2 are most critical for Module 1 to emulate? → A: All of the above (top-level categories, nesting depth, and file naming conventions)
+- Q: Are there any specific edge cases or failure conditions related to Docusaurus's behavior during module restructuring (e.g., specific metadata parsing issues, sidebar generation limits) that Module 1's refactoring should explicitly account for? → A: Docusaurus metadata errors and Broken internal links
