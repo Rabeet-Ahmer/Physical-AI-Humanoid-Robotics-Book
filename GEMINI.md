@@ -214,6 +214,8 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 - Content stored as Markdown/MDX files in `docs/module-01-nervous-system/`. (002-ros2-nervous-system)
 - Python 3.10+ (for `rclpy` related code examples, if any are part of the content being moved) + Docusaurus, `rclpy`, `urdf_parser_py` (001-refactor-module-1-ros2)
 - Files (Markdown files for content, `_category_.json` files for structure) (001-refactor-module-1-ros2)
+- Python 3.10+ (for code examples) + Docusaurus, Web Search Tool (for content sourcing) (004-develop-module-1-content)
+- Files (Markdown files for content) (004-develop-module-1-content)
 
 ## Recent Changes
 - 002-ros2-nervous-system: Added Docusaurus v3+, `rclpy`, `urdf_parser_py` (for examples), Mermaid (for diagrams).
