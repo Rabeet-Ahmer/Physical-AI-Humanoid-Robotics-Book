@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Docusaurus v3+, `rclpy`, `urdf_parser_py` (for examples), Mermaid (for diagrams). (002-ros2-nervous-system)
+- Content stored as Markdown/MDX files in `docs/module-01-nervous-system/`. (002-ros2-nervous-system)
+
+## Recent Changes
+- 002-ros2-nervous-system: Added Docusaurus v3+, `rclpy`, `urdf_parser_py` (for examples), Mermaid (for diagrams).
