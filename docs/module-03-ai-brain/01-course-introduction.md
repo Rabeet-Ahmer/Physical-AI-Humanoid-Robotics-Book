@@ -123,7 +123,7 @@ Developing intelligent robots, especially humanoids, presents significant engine
 **Conceptual Checkpoints**:
 1.  Explain how NVIDIA Isaac components contribute to the perception-cognition-action loop in a humanoid robot.
 2.  Identify at least three theoretical pillars that form the basis of Physical AI.
-3.  Describe a major challenge in deploying AI-trained models from simulation to real-world robots.
+3  Describe a major challenge in deploying AI-trained models from simulation to real-world robots.
 
 ## Further Reading
 **Papers**:
