@@ -40,6 +40,7 @@ As a learner, I want to access complete, detailed, and up-to-date content for Mo
 - **FR-007**: Information presented in Module 1 MUST be sourced via web search to ensure the latest and most accurate information, particularly for rapidly evolving topics (e.g., ROS 2 development).
 - **FR-008**: All code examples in Module 1 MUST adhere to Constitution Principle III (Executable Code, Environment, Commentary, Reproducibility, Bridge to Reality).
 - **FR-009**: All diagrams MUST adhere to Constitution Principle I (Visual Aids).
+- **FR-010**: Each content section within Module 1 MUST adopt a pedagogical structure similar to `docs/module-02-digital-twin/01-course-introduction.md`, including (but not limited to) sections for Learning Objectives, Prerequisites, Concept Overview, Theory & Fundamentals, Architecture, Diagrams, Code Examples, Practical Applications, and Review.
 
 ### Key Entities (include if feature involves data)
 
@@ -53,7 +54,7 @@ As a learner, I want to access complete, detailed, and up-to-date content for Mo
 
 ### Measurable Outcomes
 
-- **SC-001**: 100% of Module 1's content sections (as defined in `data-model.md` and the existing structure) are populated with detailed explanations exceeding a minimum word count of 500 words per section.
+- **SC-001**: 100% of Module 1's content sections (as defined in `data-model.md` and the existing structure) are populated with detailed explanations exceeding a minimum word count of 500 words per section, and each section's structure aligns with the inspired pedagogical template.
 - **SC-002**: At least 80% of complex concepts identified within Module 1's content are accompanied by relevant diagrams.
 - **SC-003**: All code snippets in Module 1 are executable Python 3.10+, run without errors, and produce consistent results (where applicable).
 - **SC-004**: All factual claims presented in Module 1 are supported by corresponding APA 7th Edition citations.
