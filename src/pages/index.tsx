@@ -12,7 +12,7 @@ export default function Home(): JSX.Element {
       title={`${siteConfig.title}`}
       description="Master Physical AI, Robotics, and Simulation">
       <HomepageHeader />
-      <main>
+      <main className="homepage-main">
         <HomepageFeatures />
         <HomepageCurriculum />
       </main>

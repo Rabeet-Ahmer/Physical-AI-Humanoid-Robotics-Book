@@ -1,6 +1,6 @@
 {
-  "name": "temp-site",
-  "version": "0.0.0",
+  "name": "Physical AI & Humanoid Robotics Textbook",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",

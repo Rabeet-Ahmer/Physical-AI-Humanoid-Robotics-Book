@@ -4,8 +4,8 @@
  * work well for content-centric websites.
  */
 
-/* Import Merriweather font for academic headings */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap');
+/* Import all necessary Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Akronim&family=Foldit:wght@100..900&family=Story+Script&family=Teko:wght@300..700&display=swap');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -21,7 +21,7 @@
 
   /* Academic & Clean Typography */
   --ifm-font-family-base: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --ifm-heading-font-family: 'Merriweather', serif;
+  --ifm-heading-font-family: 'Akronim', cursive; /* Apply Akronim to general headings */
   
   /* Layout Spacing */
   --ifm-spacing-horizontal: 1.5rem;
@@ -49,12 +49,40 @@
   --ifm-font-color-base: #e3e3e3;
 }
 
-/* Enhance headings globally */
+/* Global headings (used outside of specific overrides) - Akronim */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--ifm-heading-font-family);
+  font-family: 'Teko', sans-serif;
   font-weight: 700;
   margin-bottom: 1rem;
 }
+
+/* Apply Foldit to navbar title for distinctive branding */
+.navbar__title {
+  font-family: 'Story Script', cursive; /* Apply Foldit to the navbar title */
+  font-weight: 900; /* Use a bold weight for impact */
+  font-size: 1.8rem; /* Adjust size as needed */
+}
+
+/* Apply Story Script to headings specifically on the landing page */
+.homepage-main h3,
+.homepage-main h4,
+.homepage-main h5,
+.homepage-main h6 {
+  font-family: 'Story Script', cursive;
+  font-weight: normal; /* Story Script might not have bold weights */
+}
+
+/* Apply Teko to headings within textbook content (docs pages) */
+.docs-wrapper h1,
+.docs-wrapper h2,
+.docs-wrapper h3,
+.docs-wrapper h4,
+.docs-wrapper h5,
+.docs-wrapper h6 {
+  font-family: 'Teko', sans-serif;
+  font-weight: 600; /* Teko usually has good bold weights */
+}
+
 
 /* Hero Animations */
 @keyframes fadeIn {

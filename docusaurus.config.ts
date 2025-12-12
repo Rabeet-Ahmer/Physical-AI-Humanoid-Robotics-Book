@@ -12,13 +12,13 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://physical-ai-humanoid-robotics-book-coral-seven.vercel.app/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
-  organizationName: 'GIAIC',
+  organizationName: 'Rabeet',
   projectName: 'physical-ai-textbook',
 
   onBrokenLinks: 'throw',
@@ -62,7 +62,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Physical AI',
+      title: 'Physical AI Book',
       logo: {
         alt: 'Physical AI Logo',
         src: 'img/logo.svg',
@@ -85,7 +85,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/Rabeet-Ahmer/Physical-AI-Humanoid-Robotics-Book',
           label: 'GitHub',
           position: 'right',
         },
@@ -108,12 +108,12 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/Rabeet-Ahmer',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} GIAIC. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Rabeet. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

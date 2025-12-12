@@ -4,7 +4,7 @@
 }
 
 .curriculumSection h2 {
-  font-family: var(--ifm-heading-font-family);
+  /* font-family: var(--ifm-heading-font-family); */
   font-size: 2.5rem;
   font-weight: 700;
 }
