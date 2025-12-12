@@ -1,0 +1,55 @@
+.ctaButton {
+  padding: 1rem 2rem;
+  border-radius: 50px; /* Fully rounded */
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none; /* Remove underline for links */
+}
+
+.primaryButton {
+  background-color: white;
+  color: black;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.primaryButton:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+.secondaryButton {
+  background: rgba(0, 0, 0, 0.4); /* Dark translucent background */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Soft border */
+  backdrop-filter: blur(8px); /* Glass-morphism effect */
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.secondaryButton:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode adjustments for buttons */
+[data-theme='dark'] .primaryButton {
+  background-color: #f0f0f0; /* Slightly off-white */
+  color: black;
+}
+
+[data-theme='dark'] .secondaryButton {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.buttonIcon {
+  font-size: 1.2em; /* Adjust icon size */
+  line-height: 1;
+}

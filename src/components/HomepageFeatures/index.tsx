@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+import { BentoGridContainer, BentoGridItem } from '../BentoGrid'; // Import BentoGrid components
+import AnimatedContent from '../AnimatedContent'; // Import AnimatedContent component
 
 type FeatureItem = {
   title: string;
@@ -44,10 +46,8 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({title, Svg, description}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
+    <div className="text--center">
+      <Svg className={styles.featureSvg} role="img" />
       <div className="text--center padding-horiz--md">
         <h3 className={styles.featureTitle}>{title}</h3>
         <p>{description}</p>
@@ -60,11 +60,24 @@ export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
-        </div>
+        <h2 className="text--center">Key Features</h2> {/* Add a section title */}
+        <BentoGridContainer>
+          <BentoGridItem colSpan={2} variant="wide"> {/* Make one item span 2 columns */}
+            <AnimatedContent animationType="slide-in-up" delay={0}>
+              <Feature {...FeatureList[0]} />
+            </AnimatedContent>
+          </BentoGridItem>
+          <BentoGridItem>
+            <AnimatedContent animationType="slide-in-up" delay={100}>
+              <Feature {...FeatureList[1]} />
+            </AnimatedContent>
+          </BentoGridItem>
+          <BentoGridItem>
+            <AnimatedContent animationType="slide-in-up" delay={200}>
+              <Feature {...FeatureList[2]} />
+            </AnimatedContent>
+          </BentoGridItem>
+        </BentoGridContainer>
       </div>
     </section>
   );
