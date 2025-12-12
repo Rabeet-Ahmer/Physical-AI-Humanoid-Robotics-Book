@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <linearGradient id="robotGradient" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2e8555"/>
+      <stop offset="1" stop-color="#25c2a0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="200" cy="200" r="150" stroke="url(#robotGradient)" stroke-width="4" opacity="0.3"/>
+  <circle cx="200" cy="200" r="110" stroke="url(#robotGradient)" stroke-width="8" opacity="0.8"/>
+  <path d="M160 180 H240 M160 220 H240" stroke="white" stroke-width="10" stroke-linecap="round"/>
+  <rect x="130" y="130" width="140" height="140" rx="20" stroke="url(#robotGradient)" stroke-width="10" fill="none"/>
+</svg>
