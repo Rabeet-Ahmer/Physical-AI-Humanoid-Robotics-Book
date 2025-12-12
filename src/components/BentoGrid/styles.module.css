@@ -1,0 +1,83 @@
+.bentoGridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Default responsive columns */
+  gap: 1.5rem; /* Spacing between items */
+  padding: 2rem 0;
+}
+
+/* Desktop layout: 3 columns, some items span more */
+@media (min-width: 996px) {
+  .bentoGridContainer {
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  }
+  .large {
+    grid-column: span 2; /* Large item spans 2 columns */
+    grid-row: span 2;    /* Large item spans 2 rows */
+  }
+  .wide {
+    grid-column: span 2; /* Wide item spans 2 columns */
+  }
+  .tall {
+    grid-row: span 2;    /* Tall item spans 2 rows */
+  }
+}
+
+/* Tablet layout: 2 columns, adjust sizing */
+@media (min-width: 768px) and (max-width: 995px) {
+  .bentoGridContainer {
+    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+  }
+  .large, .wide {
+    grid-column: span 2; /* Large and wide items span 2 columns */
+  }
+}
+
+.bentoGridItem {
+  background-color: rgba(255, 255, 255, 0.1); /* Default glass-morphism background */
+  border-radius: 1rem; /* Rounded corners */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  position: relative;
+  overflow: hidden; /* For animations */
+
+  /* Glass-morphism base */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+  transform-style: preserve-3d; /* Enable 3D transformations for children */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease-out; /* Enhanced transition */
+}
+
+.bentoGridItem:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg) scale(1.02); /* Subtle 3D tilt and lift */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 255, 255, 0.3); /* Stronger shadow with subtle blue glow */
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .bentoGridItem {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .bentoGridItem:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 255, 255, 0.4); /* Stronger shadow with subtle blue glow */
+}
+
+.bentoGridItem h3 {
+  font-family: var(--ifm-heading-font-family); /* Use global heading font */
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-font-color-base);
+}
+
+.bentoGridItem p {
+  font-size: 0.95rem;
+  color: var(--ifm-font-color-base);
+  opacity: 0.8;
+}

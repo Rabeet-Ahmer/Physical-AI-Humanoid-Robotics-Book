@@ -1,18 +1,31 @@
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 100px; /* Adjust size for bento item */
+  width: 100px;
+  color: var(--ifm-color-primary); /* Use primary color for SVG if monochrome */
 }
 
 .featureTitle {
-  font-family: var(--ifm-heading-font-family);
+  font-family: var(--ifm-heading-font-family); /* Use global heading font */
   font-weight: 700;
   margin-top: 1rem;
+  color: var(--ifm-font-color-base); /* Use base font color */
 }
 
 .features {
-  display: flex;
-  align-items: center;
-  padding: 4rem 0;
-  width: 100%;
-  background-color: var(--ifm-background-color);
+  padding: 4rem 0; /* Consistent with other sections */
+  background-color: var(--ifm-background-color); /* Use background color */
+}
+
+/* Ensure the section title is styled */
+.features h2 {
+  font-family: var(--ifm-heading-font-family); /* Consistent with global headings */
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: var(--ifm-font-color-base);
+}
+
+.features p {
+  color: var(--ifm-font-color-base);
+  opacity: 0.8;
 }
