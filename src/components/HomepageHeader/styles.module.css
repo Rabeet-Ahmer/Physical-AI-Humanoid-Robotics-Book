@@ -1,0 +1,36 @@
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--ifm-color-primary-lightest); /* Light green for academic feel */
+  color: #1a1a1a;
+}
+
+[data-theme='dark'] .heroBanner {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.hero__title {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}

@@ -1,0 +1,39 @@
+.curriculumSection {
+  padding: 4rem 0;
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.curriculumSection h2 {
+  font-family: var(--ifm-heading-font-family);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.moduleCard {
+  margin-bottom: 2rem;
+}
+
+.moduleLink {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+  height: 100%;
+}
+
+.moduleLink:hover .card {
+  box-shadow: var(--ifm-global-shadow-md);
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+  border-color: var(--ifm-color-primary);
+}
+
+/* Ensure card height is consistent */
+.h-100 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card__body {
+  flex-grow: 1;
+}

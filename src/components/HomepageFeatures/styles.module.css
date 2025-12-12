@@ -1,11 +1,18 @@
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
-}
-
 .featureSvg {
   height: 200px;
   width: 200px;
+}
+
+.featureTitle {
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  width: 100%;
+  background-color: var(--ifm-background-color);
 }
