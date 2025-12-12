@@ -1,0 +1,87 @@
+/* Global animations and utility classes for bento layouts */
+
+/* On-scroll reveal animations */
+.animate-slide-in-up {
+  opacity: 0;
+  transform: translateY(30px); /* Increased translate for more noticeable effect */
+  transition: opacity 0.8s cubic-bezier(0.17, 0.55, 0.55, 1) , transform 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+}
+
+.animate-slide-in-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.animate-fade-in.is-visible {
+  opacity: 1;
+}
+
+.animate-slide-in-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s cubic-bezier(0.17, 0.55, 0.55, 1) , transform 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+}
+
+.animate-slide-in-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.animate-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s cubic-bezier(0.17, 0.55, 0.55, 1) , transform 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+}
+
+.animate-scale-in.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* Hover effects for bento items */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02); /* More pronounced lift and slight scale */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+}
+
+.hover-tilt-3d {
+  transform-style: preserve-3d; /* Enable 3D transformations */
+  transition: transform 0.3s ease-out;
+}
+
+.hover-tilt-3d:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.03); /* Subtle 3D tilt */
+}
+
+
+/* Glass-morphism base style (re-defined here for clarity if needed, or pulled from custom.css) */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Parallax (conceptual - typically requires JS for smooth implementation) */
+/* This can be a class applied to an element, with JS adjusting a CSS variable */
+.parallax-bg {
+  transform: translateY(var(--parallax-offset, 0px));
+  transition: transform 0.1s linear; /* Smooth movement */
+}
+
+/* Global Utility for staggered animations */
+.staggered-item {
+  animation-delay: var(--animation-delay, 0s);
+}

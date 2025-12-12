@@ -1,36 +1,122 @@
 .heroBanner {
-  padding: 4rem 0;
-  text-align: center;
+  padding: 4rem 0; /* Adjust as needed */
   position: relative;
   overflow: hidden;
-  background-color: var(--ifm-color-primary-lightest); /* Light green for academic feel */
-  color: #1a1a1a;
+  min-height: 80vh; /* Make the hero section take up most of the viewport height */
+  display: flex; /* Use flexbox for vertical centering */
+  align-items: center; /* Vertically center content */
+  color: white; /* Default text color for contrast against darker background animation */
+  text-align: left; /* Default text alignment for content column */
 }
 
-[data-theme='dark'] .heroBanner {
-  background-color: var(--ifm-color-primary);
-  color: #1a1a1a
+/* Ensure content is positioned correctly relative to the background animation */
+.heroContainer {
+  position: relative;
+  z-index: 1; /* Ensure content is above the background animation */
+}
+
+.heroImageColumn {
+  display: flex;
+  justify-content: center; /* Center image horizontally */
+  align-items: center;   /* Center image vertically */
+  padding: 2rem;
+}
+
+.heroImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem; /* Rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+}
+
+.heroContentColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.topBadge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent gray background */
+  padding: 0.5rem 1rem;
+  border-radius: 50px; /* Rounded pill badge */
+  color: white;
+  text-transform: uppercase; /* Small-caps typography */
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(5px); /* Glass-morphism effect */
+  -webkit-backdrop-filter: blur(5px); /* Safari support */
 }
 
 .hero__title {
-  font-family: var(--ifm-heading-font-family);
+  font-family: var(--ifm-heading-font-family); /* Global heading font or specific override */
   font-size: 3.5rem;
   font-weight: 900;
   margin-bottom: 1rem;
+  color: white; /* High-contrast white heading */
+  line-height: 1.1;
 }
 
 .hero__subtitle {
   font-size: 1.5rem;
   font-weight: 300;
   margin-bottom: 2rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  color: rgba(255, 255, 255, 0.7); /* Slightly muted gray tone */
+  max-width: none; /* Remove previous max-width */
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.featureBadges {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  justify-content: flex-start; /* Align to start on desktop */
 }
 
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
+  justify-content: flex-start; /* Align to start on desktop */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 996px) { /* Docusaurus default breakpoint for col--6 */
+  .heroBanner {
+    text-align: center; /* Center all elements on mobile */
+  }
+
+  .heroImageColumn {
+    order: -1; /* Image on top */
+  }
+
+  .heroImage {
+    max-width: 80%; /* Adjust image size for mobile */
+  }
+
+  .heroContentColumn {
+    padding-top: 0; /* Adjust padding for mobile */
+  }
+
+  .featureBadges,
+  .buttons {
+    justify-content: center; /* Center badges and buttons on mobile */
+  }
+}
+
+@media screen and (max-width: 576px) { /* Smaller mobile devices */
+  .hero__title {
+    font-size: 2.5rem; /* Smaller title for very small screens */
+  }
+  .hero__subtitle {
+    font-size: 1.2rem;
+  }
+  .buttons {
+    flex-direction: column; /* Stack buttons vertically on small phones */
+  }
 }
