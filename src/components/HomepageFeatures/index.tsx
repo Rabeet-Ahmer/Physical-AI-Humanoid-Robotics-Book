@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
-import { BentoGridContainer, BentoGridItem } from '../BentoGrid'; // Import BentoGrid components
 
 type FeatureItem = {
   title: string;
@@ -45,8 +44,10 @@ const FeatureList: FeatureItem[] = [
 
 function Feature({title, Svg, description}: FeatureItem) {
   return (
-    <div className="text--center">
-      <Svg className={styles.featureSvg} role="img" />
+    <div className={clsx('col col--4')}>
+      <div className="text--center">
+        <Svg className={styles.featureSvg} role="img" />
+      </div>
       <div className="text--center padding-horiz--md">
         <h3 className={styles.featureTitle}>{title}</h3>
         <p>{description}</p>
@@ -59,18 +60,12 @@ export default function HomepageFeatures(): JSX.Element {
   return (
     <section className={styles.features}>
       <div className="container">
-        <h2 className="text--center">Key Features</h2> {/* Add a section title */}
-        <BentoGridContainer>
-          <BentoGridItem colSpan={2} variant="wide"> {/* Make one item span 2 columns */}
-            <Feature {...FeatureList[0]} />
-          </BentoGridItem>
-          <BentoGridItem>
-            <Feature {...FeatureList[1]} />
-          </BentoGridItem>
-          <BentoGridItem>
-            <Feature {...FeatureList[2]} />
-          </BentoGridItem>
-        </BentoGridContainer>
+        <h2 className={clsx("text--center", styles.sectionTitle)}>Key Features</h2> {/* Add a section title */}
+        <div className="row">
+          {FeatureList.map((props, idx) => (
+            <Feature key={idx} {...props} />
+          ))}
+        </div>
       </div>
     </section>
   );

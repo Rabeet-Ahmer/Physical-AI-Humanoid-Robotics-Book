@@ -3,9 +3,9 @@
   background-color: var(--ifm-background-color); /* Use background color */
 }
 
-.curriculumSection h2 {
-  font-family: var(--ifm-heading-font-family); /* Consistent with global headings */
-  font-size: 2.5rem;
+.sectionTitle {
+  font-family: 'Story Script', cursive; /* Consistent with global headings */
+  font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 2rem; /* Re-add margin bottom for section title */
   color: var(--ifm-font-color-base);
@@ -16,6 +16,12 @@
   color: inherit !important;
   display: block;
   height: 100%; /* Ensure link takes full height of the bento item */
+}
+
+.moduleTitle {
+  font-family: 'Story Script', cursive; /* Apply Story Script font */
+  font-weight: 700;
+  font-size: 2rem;
 }
 
 /* Ensure card height is consistent - this is for content *inside* the bento item */

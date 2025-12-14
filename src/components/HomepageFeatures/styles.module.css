@@ -1,13 +1,14 @@
 .featureSvg {
-  height: 100px; /* Adjust size for bento item */
-  width: 100px;
+  height: 200px;
+  width: 200px;
   color: var(--ifm-color-primary); /* Use primary color for SVG if monochrome */
 }
 
 .featureTitle {
-  font-family: var(--ifm-heading-font-family); /* Use global heading font */
+  font-family: 'Story Script', cursive; /* Use Story Script font */
   font-weight: 700;
   margin-top: 1rem;
+  font-size: 2rem;
   color: var(--ifm-font-color-base); /* Use base font color */
 }
 
@@ -17,9 +18,9 @@
 }
 
 /* Ensure the section title is styled */
-.features h2 {
-  font-family: var(--ifm-heading-font-family); /* Consistent with global headings */
-  font-size: 2.5rem;
+.sectionTitle {
+  font-family: 'Story Script', cursive; /* Consistent with global headings */
+  font-size: 3.5rem;
   font-weight: 800;
   margin-bottom: 2rem;
   color: var(--ifm-font-color-base);

@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
-import { BentoGridContainer, BentoGridItem } from '../BentoGrid'; // Import BentoGrid components
 
 type ModuleItem = {
   title: string;
@@ -35,19 +34,21 @@ const ModuleList: ModuleItem[] = [
 
 function Module({title, link, description}: ModuleItem) {
   return (
-    <Link to={link} className={styles.moduleLink}>
-      <div className="card padding--lg h-100">
-        <div className="card__header">
-          <h3>{title}</h3>
+    <div className={clsx('col col--6 margin-bottom--lg')}>
+      <Link to={link} className={styles.moduleLink}>
+        <div className="card padding--lg h-100">
+          <div className="card__header">
+            <h3 className={styles.moduleTitle}>{title}</h3>
+          </div>
+          <div className="card__body">
+            <p>{description}</p>
+          </div>
+          <div className="card__footer">
+            <span className="button button--secondary button--block">Start Module</span>
+          </div>
         </div>
-        <div className="card__body">
-          <p>{description}</p>
-        </div>
-        <div className="card__footer">
-          <span className="button button--secondary button--block">Start Module</span>
-        </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
@@ -55,22 +56,12 @@ export default function HomepageCurriculum(): JSX.Element {
   return (
     <section className={styles.curriculumSection}>
       <div className="container">
-        <h2 className="text--center margin-bottom--lg">Curriculum Roadmap</h2>
-        <BentoGridContainer>
-          {/* Example bento layout: one item spans 2 columns */}
-          <BentoGridItem colSpan={2} variant="wide">
-            <Module {...ModuleList[0]} />
-          </BentoGridItem>
-          <BentoGridItem>
-            <Module {...ModuleList[1]} />
-          </BentoGridItem>
-          <BentoGridItem>
-            <Module {...ModuleList[2]} />
-          </BentoGridItem>
-          <BentoGridItem>
-            <Module {...ModuleList[3]} />
-          </BentoGridItem>
-        </BentoGridContainer>
+        <h2 className={clsx("text--center", styles.sectionTitle)}>Curriculum Roadmap</h2>
+        <div className="row">
+          {ModuleList.map((props, idx) => (
+            <Module key={idx} {...props} />
+          ))}
+        </div>
       </div>
     </section>
   );
