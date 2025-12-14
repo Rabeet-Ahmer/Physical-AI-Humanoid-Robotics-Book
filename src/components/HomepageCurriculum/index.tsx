@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 import { BentoGridContainer, BentoGridItem } from '../BentoGrid'; // Import BentoGrid components
-import AnimatedContent from '../AnimatedContent'; // Import AnimatedContent component
 
 type ModuleItem = {
   title: string;
@@ -60,24 +59,16 @@ export default function HomepageCurriculum(): JSX.Element {
         <BentoGridContainer>
           {/* Example bento layout: one item spans 2 columns */}
           <BentoGridItem colSpan={2} variant="wide">
-            <AnimatedContent animationType="slide-in-up" delay={0}>
-              <Module {...ModuleList[0]} />
-            </AnimatedContent>
+            <Module {...ModuleList[0]} />
           </BentoGridItem>
           <BentoGridItem>
-            <AnimatedContent animationType="slide-in-up" delay={100}>
-              <Module {...ModuleList[1]} />
-            </AnimatedContent>
+            <Module {...ModuleList[1]} />
           </BentoGridItem>
           <BentoGridItem>
-            <AnimatedContent animationType="slide-in-up" delay={200}>
-              <Module {...ModuleList[2]} />
-            </AnimatedContent>
+            <Module {...ModuleList[2]} />
           </BentoGridItem>
           <BentoGridItem>
-            <AnimatedContent animationType="slide-in-up" delay={300}>
-              <Module {...ModuleList[3]} />
-            </AnimatedContent>
+            <Module {...ModuleList[3]} />
           </BentoGridItem>
         </BentoGridContainer>
       </div>

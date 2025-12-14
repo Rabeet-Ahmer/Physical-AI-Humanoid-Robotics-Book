@@ -2,7 +2,6 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 import { BentoGridContainer, BentoGridItem } from '../BentoGrid'; // Import BentoGrid components
-import AnimatedContent from '../AnimatedContent'; // Import AnimatedContent component
 
 type FeatureItem = {
   title: string;
@@ -63,19 +62,13 @@ export default function HomepageFeatures(): JSX.Element {
         <h2 className="text--center">Key Features</h2> {/* Add a section title */}
         <BentoGridContainer>
           <BentoGridItem colSpan={2} variant="wide"> {/* Make one item span 2 columns */}
-            <AnimatedContent animationType="slide-in-up" delay={0}>
-              <Feature {...FeatureList[0]} />
-            </AnimatedContent>
+            <Feature {...FeatureList[0]} />
           </BentoGridItem>
           <BentoGridItem>
-            <AnimatedContent animationType="slide-in-up" delay={100}>
-              <Feature {...FeatureList[1]} />
-            </AnimatedContent>
+            <Feature {...FeatureList[1]} />
           </BentoGridItem>
           <BentoGridItem>
-            <AnimatedContent animationType="slide-in-up" delay={200}>
-              <Feature {...FeatureList[2]} />
-            </AnimatedContent>
+            <Feature {...FeatureList[2]} />
           </BentoGridItem>
         </BentoGridContainer>
       </div>
