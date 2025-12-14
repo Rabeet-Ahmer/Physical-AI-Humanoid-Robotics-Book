@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './styles.module.css';
-import BackgroundAnimation from '../BackgroundAnimation'; // Import the new component
 import FeatureBadge from '../FeatureBadge'; // Import FeatureBadge component
 import CTAButton from '../CTAButton'; // Import CTAButton component
 
@@ -11,7 +10,6 @@ export default function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <BackgroundAnimation /> {/* Add background animation */}
       <div className={clsx('container', styles.heroContainer)}>
         <div className="row">
           {/* Left Column for Image */}

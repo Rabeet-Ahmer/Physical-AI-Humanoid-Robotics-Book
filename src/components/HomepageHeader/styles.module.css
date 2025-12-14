@@ -1,18 +1,13 @@
 .heroBanner {
   padding: 4rem 0; /* Adjust as needed */
-  position: relative;
-  overflow: hidden;
   min-height: 80vh; /* Make the hero section take up most of the viewport height */
   display: flex; /* Use flexbox for vertical centering */
   align-items: center; /* Vertically center content */
-  color: white; /* Default text color for contrast against darker background animation */
   text-align: left; /* Default text alignment for content column */
 }
 
 /* Ensure content is positioned correctly relative to the background animation */
 .heroContainer {
-  position: relative;
-  z-index: 1; /* Ensure content is above the background animation */
 }
 
 .heroImageColumn {
