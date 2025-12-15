@@ -15,7 +15,7 @@
   text-decoration: none !important;
   color: inherit !important;
   display: block;
-  height: 100%; /* Ensure link takes full height of the bento item */
+  height: 100%; /* Ensure link takes full height of the card */
 }
 
 .moduleTitle {
@@ -24,7 +24,7 @@
   font-size: 2rem;
 }
 
-/* Ensure card height is consistent - this is for content *inside* the bento item */
+/* Ensure card height is consistent - this is for content *inside* the card */
 .h-100 {
   height: 100%;
   display: flex;
