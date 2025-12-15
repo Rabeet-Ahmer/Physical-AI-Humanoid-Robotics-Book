@@ -22,14 +22,14 @@ tags: [ros2, nodes, topics, services, rclpy]
 *   Completion of **01-Overview**.
 *   Understanding of Python classes and inheritance.
 
-### Concept Overview
+### Veins and Nerves
 
 If Nodes are the organs of the robot, **Topics** and **Services** are the veins and nerves connecting them.
 
 *   **Topics (Veins)**: Continuous flow of blood (data). The heart pumps without asking the liver if it's ready. (Asynchronous, One-to-Many).
 *   **Services (Nerves)**: Specific signals for specific actions. The brain tells the hand to "close" and waits for a confirmation. (Synchronous, One-to-One).
 
-### System-Level Intuition
+### Town Halls and Pizza Shops
 
 **The Town Hall Analogy (Topics)**:
 A Topic is like a radio station.
@@ -43,7 +43,7 @@ A Service is like ordering a pizza.
 *   **Server**: The pizza place receives the order, cooks it, and delivers it (Response).
 *   **Blocking**: You can't eat until the pizza arrives.
 
-### Theory & Fundamentals
+### Communication Patterns
 
 #### 1. Topics (Publish-Subscribe)
 
@@ -61,7 +61,7 @@ A Service is like ordering a pizza.
 *   **Coupling**: Tighter coupling.
 *   **Use Case**: Mode switching, calibration, computation requests (e.g., "Plan a path").
 
-### Architecture & Components
+### Interaction Flow
 
 The following diagram shows the interaction between two nodes using both a Topic and a Service.
 
@@ -84,7 +84,7 @@ sequenceDiagram
     Note right of S: Resumes
 ```
 
-### Algorithms & Models
+### The Service Handshake
 
 **The Service Handshake**:
 1.  **Advertising**: Server tells ROS Master (DDS) "I offer service X".
@@ -92,7 +92,7 @@ sequenceDiagram
 3.  **Connection**: Client and Server establish a direct link.
 4.  **Transaction**: Client sends Request -> Server processes -> Server sends Response.
 
-### Code Examples
+### Coding Communication
 
 #### 1. The Publisher (Topic)
 
@@ -147,13 +147,13 @@ def main(args=None):
     rclpy.shutdown()
 ```
 
-### Practical Applications
+### Streaming vs. Transactions
 
 1.  **Lidar Stream**: A topic `/scan` publishing millions of points per second. Using `Best Effort` QoS ensures the robot always acts on the *latest* scan, not old data.
 2.  **Gripper Control**: A service `/gripper/grasp` is used. The robot waits for the gripper to confirm "Object Grasped" before trying to lift it.
 3.  **Battery Monitor**: A topic `/battery_state` publishes voltage at 1Hz.
 
-### Common Pitfalls & Design Trade-offs
+### Blocking the Veins
 
 *   **Pitfall: Using Services for Data Streaming**:
     *   *Bad*: Calling a service `GetImage` 30 times a second. The overhead of the handshake will kill performance.
@@ -162,7 +162,7 @@ def main(args=None):
     *   *Bad*: `time.sleep(5)` inside a callback. The Node stops responding to *everything*.
     *   *Good*: Use a Timer or a State Machine.
 
-### Mini Project / Lab
+### Lab: Ping-Pong
 
 **Task**: Create a "Ping-Pong" system.
 
@@ -175,7 +175,7 @@ def main(args=None):
 *   PingNode: "Ping sent... Score updated to 1"
 *   PongNode: "Received Ping, calling Service..."
 
-### Review & Checkpoints
+### Key Takeaways
 
 *   **Topics**: Use for continuous data flow (Sensor -> Controller).
 *   **Services**: Use for transactions (Controller -> Actuator Command).

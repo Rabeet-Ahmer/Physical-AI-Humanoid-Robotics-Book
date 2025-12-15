@@ -24,7 +24,7 @@ Before starting this module, ensure you have:
 *   Basic familiarity with **Python** and **C#** (for Unity scripting).
 *   Installed **ROS 2 (Humble or Jazzy)**, **Gazebo (Harmonic)**, and **Unity Hub**.
 
-### Concept Overview
+### The "Dream State" of Robots
 
 A **Digital Twin** in Physical AI is not merely a 3D model; it is a dynamic, physics-compliant replica of a physical robot and its environment. It serves as the training ground where the "Brain" (AI models) learns to control the "Body" (Hardware) without the risks and costs associated with physical testing.
 
@@ -33,7 +33,7 @@ In humanoid robotics, the Digital Twin is essential for:
 *   **Scalability**: Running thousands of simulation instances in parallel for Reinforcement Learning.
 *   **Ground Truth**: Accessing perfect data (e.g., exact robot pose, segmentation masks) that is noisy or unavailable in the real world.
 
-### System-Level Intuition
+### Simulation vs. Reality
 
 Think of the Digital Twin as the **"Dream State"** of the robot. Just as humans simulate future scenarios in their minds to predict outcomes, a robot uses its Digital Twin to predict the consequences of its actions before executing them.
 
@@ -47,7 +47,7 @@ The Digital Twin sits between the **AI Controller** and the **Real World**.
 *   **Process**: Physics Engine calculates the resulting motion.
 *   **Output**: Simulated sensor data (camera images, joint states) fed back to the AI.
 
-### Theory & Fundamentals
+### The Sim-to-Real Gap
 
 The core theoretical challenge in Digital Twins is **Sim-to-Real Transfer**: ensuring that policies learned in simulation work in the real world. This relies on minimizing the *Reality Gap*.
 
@@ -80,7 +80,7 @@ We aim to minimize this via:
 *   **System Identification**: Tuning simulation parameters (mass, friction) to match the real robot.
 *   **Domain Randomization**: Training on a distribution of physics parameters to be robust to modeling errors.
 
-### Architecture & Components
+### The Simulation Pipeline
 
 A complete Digital Twin system for humanoid robotics typically involves three main subsystems:
 
@@ -102,7 +102,7 @@ A complete Digital Twin system for humanoid robotics typically involves three ma
 **Hardware-Software Interaction**:
 The simulation runs on a high-end workstation (GPU required for rendering), communicating with the robot's control stack (ROS 2) over shared memory or TCP/IP. To the ROS 2 system, the Digital Twin looks exactly like the real robot hardware drivers.
 
-### Diagrams
+### Data Flow: From Sim to ROS
 
 The following diagram illustrates the data flow in a typical Digital Twin setup, separating the Physics and Rendering components.
 
@@ -143,7 +143,7 @@ graph TD
     classDef db fill:#fff3e0,stroke:#e65100,stroke-width:2px;
 ```
 
-### Algorithms & Models
+### The Physics Loop
 
 The primary algorithm governing a simulation is the **Integration Step**. It advances the world state by a small time delta ($\Delta t$).
 
@@ -156,7 +156,7 @@ The primary algorithm governing a simulation is the **Integration Step**. It adv
         1.  $v_{t+1} = v_t + \frac{F}{m} \Delta t$
         2.  $x_{t+1} = x_t + v_{t+1} \Delta t$
 
-### Code Examples
+### Physics in a Nutshell
 
 Here is a simple Python example demonstrating a basic Euler integration step, which is the heart of any physics engine.
 
@@ -211,13 +211,13 @@ if __name__ == "__main__":
              print(f"Time: {(i+1)*dt:.2f}s | Pos: {pos:.2f}m | Vel: {vel:.2f}m/s")
 ```
 
-### Practical Applications
+### Who Needs a Digital Twin?
 
 1.  **Boston Dynamics**: Uses high-fidelity simulation to test Atlas's parkour routines before attempting them on real hardware, saving millions in potential repair costs.
 2.  **Amazon Robotics**: Simulates warehouse environments to train mobile robots (Proteus) to navigate around humans safely.
 3.  **Tesla Bot (Optimus)**: Leverages simulation for "Data-Driven" engineering, training neural networks on millions of hours of simulated walking data (Isaac Gym).
 
-### Common Pitfalls & Design Trade-offs
+### Speed vs. Accuracy
 
 *   **Trade-off: Speed vs. Accuracy**:
     *   *Real-time (60Hz)*: Required for Human-in-the-loop (VR). Uses simplified physics.
@@ -228,7 +228,7 @@ if __name__ == "__main__":
 *   **Hardware Constraints**:
     *   High-fidelity rendering (Unity HDRP) requires significant GPU VRAM (>8GB recommended).
 
-### Mini Project / Lab
+### Lab: Setup Your World
 
 **Task**: Setup your Digital Twin Environment.
 
@@ -246,7 +246,7 @@ if __name__ == "__main__":
 *   Ubuntu 22.04 / 24.04 (or WSL2)
 *   VS Code
 
-### Review & Checkpoints
+### Key Takeaways
 
 *   **Digital Twin Definition**: A physics-compliant, synchronized virtual replica.
 *   **Simulation Loop**: Controls -> Physics -> Rendering -> Sensors.

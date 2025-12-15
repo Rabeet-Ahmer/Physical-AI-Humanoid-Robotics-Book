@@ -16,13 +16,13 @@ tags: [gazebo, physics-engine, ros2, simulation, urdf, sdf]
 4.  **Implement** a simple physics plugin to apply forces to a rigid body.
 :::
 
-### Concept Overview
+### The Gym for Robots
 
 Gazebo is the de facto standard simulator for the ROS ecosystem. Unlike a game engine where visual fidelity is paramount, Gazebo prioritizes **physics fidelity** and **sensor accuracy**. It simulates the forces of nature—gravity, friction, inertia—allowing you to test if your robot will physically stand up, balance, or fall over.
 
 In Physical AI, Gazebo is the "Gym." It is where the robot exercises its control policies against the laws of physics millions of times before entering the real world.
 
-### System-Level Intuition
+### The Virtual Laboratory
 
 Imagine Gazebo as a **Virtual Laboratory**.
 
@@ -33,7 +33,7 @@ Imagine Gazebo as a **Virtual Laboratory**.
 **Analogy**:
 If ROS 2 is the **Nervous System** carrying signals, Gazebo is the **Physical World** that those signals interact with. The robot sends a "Move Arm" signal (ROS), and Gazebo calculates "Did the arm hit the table?" (Physics).
 
-### Theory & Fundamentals
+### Solving Contacts & Inertia
 
 #### 1. The Physics Engine Loop
 Gazebo relies on an external physics engine (default is DART in Gazebo Harmonic, ODE in Classic). The core loop involves solving the **Linear Complementarity Problem (LCP)** for contacts.
@@ -61,7 +61,7 @@ $$
 **Garbage In, Garbage Out**: If your URDF has dummy inertia values (e.g., all 1.0), your simulation will be unstable and unrealistic. Always compute inertia based on CAD models.
 :::
 
-### Architecture & Components
+### Gazebo's Server-Client Model
 
 Gazebo follows a Client-Server architecture:
 
@@ -79,7 +79,7 @@ Gazebo follows a Client-Server architecture:
     *   Translates ROS 2 topics (`/cmd_vel`) to Gazebo topics (`/model/robot/cmd_vel`).
     *   Handles clock synchronization (`/clock`) to keep ROS time compatible with Sim time.
 
-### Diagrams
+### ROS-Gazebo Bridge
 
 ```mermaid
 graph TD
@@ -113,7 +113,7 @@ graph TD
     classDef db fill:#fff3e0,stroke:#e65100,stroke-width:2px;
 ```
 
-### Algorithms & Models
+### URDF vs. SDF
 
 #### Robot Description Formats
 
@@ -129,7 +129,7 @@ graph TD
 
 **Best Practice**: Write your robot in **URDF** for compatibility, and use the `<gazebo>` tag extension to inject SDF properties.
 
-### Code Examples
+### Defining Physics Properties
 
 #### 1. Defining a Physics-Ready Link (URDF)
 Note the inclusion of `<inertial>` and `<collision>` blocks. Visual meshes are ignored by the physics engine.
@@ -195,12 +195,12 @@ def generate_launch_description():
     ])
 ```
 
-### Practical Applications
+### Virtual Competitions
 
 *   **DARPA Robotics Challenge (DRC)**: The VRC (Virtual Robotics Challenge) used Gazebo to qualify teams before letting them touch real hardware.
 *   **Agile Development**: CI/CD pipelines run Gazebo tests on every Pull Request to ensure new code doesn't cause the robot to crash.
 
-### Common Pitfalls & Design Trade-offs
+### The Exploding Robot
 
 *   **Pitfall: The "Exploding Robot"**:
     *   *Cause*: Overlapping collision geometries at spawn or infinitely stiff PID gains.
@@ -209,7 +209,7 @@ def generate_launch_description():
     *   Using high-poly visual meshes for collisions kills performance.
     *   *Best Practice*: Use primitive shapes (box, cylinder, sphere) for collision, meshes only for visuals.
 
-### Mini Project / Lab
+### Lab: The Bouncing Ball
 
 **Task**: Create a "Bouncing Ball" World.
 
@@ -227,7 +227,7 @@ The ball should fall, hit the ground, and bounce nearly back to its original hei
 *   Text Editor (VS Code)
 *   `gz sim` command line tool
 
-### Review & Checkpoints
+### Summary
 
 *   **URDF vs SDF**: URDF for robot description (ROS standard), SDF for simulation environment (Gazebo native).
 *   **Inertia Matters**: Physics engines require mass and inertia tensors to solve dynamics ($F=ma$).

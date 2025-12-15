@@ -22,19 +22,19 @@ tags: [ros2, urdf, kinematics, humanoids, tf2]
 *   Completion of **03-Python Agents**.
 *   Basic understanding of 3D coordinates (X, Y, Z, Roll, Pitch, Yaw).
 
-### Concept Overview
+### Self-Image
 
 A robot needs a self-image. It needs to know "Where is my hand relative to my eyes?" to grab a cup.
 **URDF** is the file format defining this body structure. **TF2** is the library that calculates the math of moving parts in real-time.
 
-### System-Level Intuition
+### The Marionette
 
 **The Marionette Analogy**:
 *   **URDF**: The blueprint of the marionette. "The leg bone is connected to the hip bone."
 *   **Joint States**: The strings. "Pull the knee string to 45 degrees."
 *   **TF2**: The audience's view. If the torso moves forward, TF2 calculates where the hand ends up in the world.
 
-### Theory & Fundamentals
+### Kinematic Trees & Transforms
 
 #### 1. The Kinematic Tree
 
@@ -48,7 +48,7 @@ A robot is a collection of coordinate frames.
 *   `base_link` -> `torso` -> `arm` -> `hand`.
 To get the hand position in the world, you multiply the transformation matrices of the chain. TF2 does this automatically.
 
-### Architecture & Components
+### Skeletal Structure
 
 The following diagram illustrates a simple humanoid leg structure (Hip -> Thigh -> Shin -> Foot).
 
@@ -71,7 +71,7 @@ graph TD
     classDef joint fill:#ffcc80,stroke:#e65100,stroke-width:2px,shape:circle;
 ```
 
-### Algorithms & Models
+### Forward vs. Inverse Kinematics
 
 **Forward Kinematics**:
 Given joint angles ($q$), calculate end-effector position ($x$).
@@ -83,7 +83,7 @@ Given desired position ($x$), calculate joint angles ($q$).
 $$ q = f^{-1}(x) $$
 This is hard (multiple solutions) and usually handled by libraries like `MoveIt`.
 
-### Code Examples
+### Defining and Moving a Leg
 
 #### 1. A Simple URDF (XML)
 
@@ -153,13 +153,13 @@ def main(args=None):
     rclpy.shutdown()
 ```
 
-### Practical Applications
+### Why Visualization Matters
 
 1.  **Visualization (RViz)**: You can't debug a robot you can't see. URDF allows you to see the robot's state in 3D.
 2.  **Collision Checking**: The URDF defines collision geometry (simplified shapes) used by the motion planner to avoid hitting self or walls.
 3.  **Sim-to-Real**: The same URDF is used in Gazebo (Simulation) and on the physical robot, ensuring the math matches reality.
 
-### Common Pitfalls & Design Trade-offs
+### Visual vs. Collision
 
 *   **Pitfall: Visual vs. Collision**:
     *   *Bad*: Using a 10MB high-poly mesh for collision. Physics engine will crash.
@@ -167,7 +167,7 @@ def main(args=None):
 *   **Pitfall: Tree vs. Graph**:
     *   URDF only supports Trees (no closed loops). If you have a 4-bar linkage (closed loop), you must simulate it or use SDF (Simulation Description Format).
 
-### Mini Project / Lab
+### Lab: Visualize in RViz
 
 **Task**: Visualize your Leg.
 
@@ -181,7 +181,7 @@ def main(args=None):
 *   An RViz window opens showing a box and a cylinder.
 *   A "Joint State Publisher" GUI allows you to wiggle the leg.
 
-### Review & Checkpoints
+### Summary
 
 *   **Links**: Mass and Geometry.
 *   **Joints**: Kinematics and Limits.

@@ -16,13 +16,13 @@ tags: [unity, rendering, computer-vision, synthetic-data, ray-tracing]
 4.  **Set up** a basic Unity scene for generating synthetic training data.
 :::
 
-### Concept Overview
+### The Eye Doctor
 
 While Gazebo excels at physics, it often looks like a "cartoon" to a computer vision algorithm. Real-world cameras deal with lens flare, shadows, motion blur, and complex textures. **Unity** (and Unreal Engine) fills this gap by providing photorealistic rendering.
 
 In Physical AI, Unity is the **Eye Doctor**. It trains the robot's vision system (Convolutional Neural Networks) to recognize objects in messy, imperfect lighting conditions before the robot ever opens its eyes in the real world.
 
-### System-Level Intuition
+### The Hollywood Set
 
 Think of Unity as a **Hollywood Movie Set**.
 
@@ -34,7 +34,7 @@ Think of Unity as a **Hollywood Movie Set**.
 **The Unity-ROS Connection**:
 Instead of a direct cable, we often use a TCP/IP **Connector** (like the `Unity Robotics Hub`). Unity renders an image, compresses it, and sends it to a ROS topic (`/camera/image_raw`). ROS processes it and sends back a control command (`/cmd_vel`).
 
-### Theory & Fundamentals
+### Ray Tracing & Randomization
 
 #### 1. The Rendering Pipeline
 The goal is to convert a 3D description (vertices) into a 2D image (pixels).
@@ -50,7 +50,7 @@ A key challenge is the **Sim-to-Real Gap**. A model trained on perfect Unity gra
 
 If the model learns to identify the target *despite* all this chaos, it becomes robust enough for the real world.
 
-### Architecture & Components
+### Unity + ROS Architecture
 
 1.  **GameObjects & Components**:
     *   Everything in Unity is a `GameObject`.
@@ -65,7 +65,7 @@ If the model learns to identify the target *despite* all this chaos, it becomes 
     *   **URDF Importer**: Imports robot descriptions into Unity.
     *   **TCP Connector**: Serializes C# structs to ROS messages.
 
-### Diagrams
+### Visual Pipeline
 
 ```mermaid
 graph LR
@@ -91,7 +91,7 @@ graph LR
     classDef ros fill:#fff,stroke:#333,stroke-width:2px;
 ```
 
-### Algorithms & Models
+### Generating Synthetic Data
 
 #### 1. Synthetic Data Generation with Domain Randomization
 The core idea is to vary parameters of the simulation environment randomly to generate diverse training data.
@@ -112,7 +112,7 @@ The core idea is to vary parameters of the simulation environment randomly to ge
 The dream is to go from real-world data to a perfect simulation.
 *   **Goal**: Estimate scene parameters (lighting, object pose, materials) from real images to create a more accurate digital twin.
 
-### Code Examples
+### Scripting Randomization
 
 #### 1. C# Script for Randomizing Object Position
 Attach this script to a GameObject in Unity to randomize its position within a specified range.
@@ -209,20 +209,20 @@ public class RosCameraPublisher : MonoBehaviour
 }
 ```
 
-### Practical Applications
+### Training Vision Models
 
 *   **Autonomous Driving**: Training perception models (object detection, semantic segmentation) on millions of synthetic driving scenarios before real-world testing.
 *   **Robotics Pick-and-Place**: Generating diverse datasets of objects in various poses and lighting conditions for robotic manipulation.
 *   **XR (eXtended Reality)**: Creating realistic virtual environments for human-robot interaction studies or robot teleoperation.
 
-### Common Pitfalls & Design Trade-offs
+### Pretty vs. Fast
 
 *   **Pitfall: Poor Asset Quality**: Low-resolution textures or poorly modeled meshes will look bad and might not fool the vision model.
     *   *Fix*: Invest in high-quality assets or use procedural generation.
 *   **Trade-off: Rendering Speed vs. Fidelity**: Ray tracing is beautiful but slow. Rasterization is fast but less accurate.
     *   *Best Practice*: Use ray tracing for ground truth generation (offline), and rasterization for real-time simulation (if fidelity is acceptable).
 
-### Mini Project / Lab
+### Lab: Synthetic Dataset Generation
 
 **Task**: Generate a Synthetic Dataset of a Cube.
 
@@ -241,7 +241,7 @@ A dataset of images where a cube appears in various positions within the camera'
 *   ROS 2 Foxy/Humble/Iron
 *   `Unity Robotics Hub` package
 
-### Review & Checkpoints
+### Checklist
 
 *   **Gazebo vs. Unity**: Physics simulation vs. high-fidelity rendering.
 *   **Domain Randomization**: Crucial for bridging the Sim-to-Real gap in vision.

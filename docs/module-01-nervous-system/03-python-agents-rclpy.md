@@ -22,11 +22,11 @@ tags: [ros2, python, rclpy, oop, agents]
 *   Completion of **02-Nodes, Topics, & Services**.
 *   Intermediate Python (Decorators, Threading, Inheritance).
 
-### Concept Overview
+### The Bridge to Python
 
 `rclpy` is the bridge between the Python world and the ROS 2 core. It allows you to wrap standard Python logic—like an AI inference loop or a sensor driver—inside a ROS 2 Node shell.
 
-### System-Level Intuition
+### The Astronaut in the Suit
 
 **The Spacesuit Analogy**:
 Your Python script (e.g., an Image Classifier) is an astronaut.
@@ -34,7 +34,7 @@ Your Python script (e.g., an Image Classifier) is an astronaut.
 *   **rclpy Node**: The spacesuit. It provides life support (power/threads), communication radio (topics), and protection (error handling).
 *   **The Astronaut**: Just focuses on the mission (classifying images), not on how to breathe (transporting bytes over UDP).
 
-### Theory & Fundamentals
+### Inside the Node
 
 #### 1. The Node Class
 
@@ -50,7 +50,7 @@ ROS 2 uses a **Executor** pattern.
 *   **SingleThreadedExecutor**: Default. Callbacks run sequentially. One stuck callback freezes the node.
 *   **MultiThreadedExecutor**: Callbacks can run in parallel. Requires thread safety awareness.
 
-### Architecture & Components
+### Agent Class Structure
 
 The following diagram shows the internal structure of a robust `rclpy` node.
 
@@ -78,7 +78,7 @@ classDiagram
     MyAgent ..> PyTorch : Uses
 ```
 
-### Algorithms & Models
+### Event-Driven Execution
 
 **The Callback Queue**:
 When a message arrives, it doesn't interrupt your code immediately. It sits in a queue (DDS queue -> Middleware queue -> Executor queue). The `spin` loop picks it up and executes the callback.
@@ -86,7 +86,7 @@ When a message arrives, it doesn't interrupt your code immediately. It sits in a
 **Frequency Control**:
 Using `create_timer(1.0 / hz, callback)` is the standard way to run control loops. Do not use `while True:` loops, as they block the Executor from processing other callbacks.
 
-### Code Examples
+### Building a Parameterized Agent
 
 #### A Parameterized Agent Node
 
@@ -138,13 +138,13 @@ def main(args=None):
         rclpy.shutdown()
 ```
 
-### Practical Applications
+### From AI to Control
 
 1.  **AI Integration**: Load a PyTorch model in `__init__`. In the subscriber callback, convert the ROS image to a Tensor, run inference, and publish the result.
 2.  **PID Controller**: A timer runs at 100Hz. In the callback, calculate Error = Target - Current, compute PID, and publish Torque.
 3.  **Bridge Node**: Listen to MQTT messages from the cloud and republish them as ROS 2 topics for the robot.
 
-### Common Pitfalls & Design Trade-offs
+### Blocking the Brain
 
 *   **Pitfall: Heavy Computation in Callbacks**:
     *   *Problem*: Running a 500ms neural network inference in a subscriber callback blocks the heartbeat and other sensors.
@@ -153,7 +153,7 @@ def main(args=None):
     *   *Problem*: Using global variables makes nodes hard to test and restart.
     *   *Solution*: Store state in `self.variable` inside the class.
 
-### Mini Project / Lab
+### Lab: Smart Thermostat
 
 **Task**: Create a "Smart Thermostat" Agent.
 
@@ -168,7 +168,7 @@ def main(args=None):
 *   Publish 20.0 to `/temperature`.
 *   See "Heater ON" on `/heater`.
 
-### Review & Checkpoints
+### Checklist
 
 *   **OOP**: Always inherit from `Node`.
 *   **Parameters**: Don't hardcode values; use `declare_parameter`.

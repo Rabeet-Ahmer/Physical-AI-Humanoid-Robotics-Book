@@ -14,7 +14,7 @@ tags: [ros2, middleware, nodes, communication, physical-ai]
 2.  **Explain** the necessity of middleware for modular robotic software.
 3.  **Visualize** the ROS 2 Graph architecture and data flow.
 4.  **Differentiate** between the control plane (ROS 2) and the data plane (DDS).
-5.  **Critique** the advantages of a distributed system over a monolithic one.
+5.  **Critique** the advantages of a distributed system over a monolithic one.      
 :::
 
 ## Prerequisites
@@ -24,13 +24,13 @@ Before starting this module, ensure you have:
 *   A working installation of **ROS 2 (Humble or Jazzy)** on Ubuntu 22.04/24.04 or via Docker.
 *   Understanding of basic Linux CLI commands.
 
-### Concept Overview
+### The Nervous System Analogy
 
 In the anatomy of a Physical AI, if the Large Language Model (LLM) is the "Brain" and the motors/sensors are the "Body," then **ROS 2 (Robot Operating System 2)** is the **"Nervous System."**
 
 It is the middleware responsible for transmitting high-speed signals (sensor data, motor commands) between independent organs (software components) of the robot. Without it, the brain is disconnected from the body.
 
-### System-Level Intuition
+### Anatomy of a Robot
 
 A complex robot is not a single program. It is a collection of dozens, sometimes hundreds, of independent programs running simultaneously.
 
@@ -44,7 +44,7 @@ ROS 2 employs a **Publish-Subscribe** pattern.
 *   **Subscribers**: Listeners (e.g., an Object Detector Node listening for "images").
 *   **The Network**: The "bus" where these messages travel.
 
-### Theory & Fundamentals
+### The Computation Graph
 
 The core theoretical model of ROS 2 is the **Computation Graph**.
 
@@ -57,7 +57,7 @@ The core theoretical model of ROS 2 is the **Computation Graph**.
 #### The Distributed Systems Theorem (CAP Theorem applicability)
 While ROS 2 is not a database, it faces distributed system challenges. It prioritizes **Availability** and **Partition Tolerance** in its design, often relying on "Best Effort" communication (UDP) for sensor data to maintain real-time performance.
 
-### Architecture & Components
+### Layered Architecture
 
 The ROS 2 architecture is layered:
 
@@ -67,7 +67,7 @@ The ROS 2 architecture is layered:
 4.  **DDS Implementation**: The industry-standard connectivity framework (e.g., CycloneDDS, FastDDS).
 5.  **OS**: Linux, Windows, macOS, RTOS.
 
-### Diagrams
+### Visualizing the System
 
 The following diagram illustrates the "Nervous System" connecting the Brain (AI) to the Body (Hardware).
 
@@ -100,7 +100,7 @@ graph TD
     classDef hw fill:#fff3e0,stroke:#e65100,stroke-width:2px;
 ```
 
-### Algorithms & Models
+### The Execution Loop
 
 ROS 2 execution is governed by the **Executor**.
 
@@ -112,7 +112,7 @@ ROS 2 execution is governed by the **Executor**.
 
 This event-driven architecture is efficient but requires care to avoid blocking the main thread.
 
-### Code Examples
+### Hello World: The Heartbeat
 
 A minimal "Nervous System" node in Python that keeps the system "alive" (Heartbeat).
 
@@ -157,13 +157,13 @@ if __name__ == '__main__':
     main()
 ```
 
-### Practical Applications
+### Real-World Nervous Systems
 
 1.  **NASA Viper Rover**: Uses ROS 2 to manage the complexity of lunar exploration, allowing different teams to build the navigation, vision, and drilling systems independently.
 2.  **Universal Robots**: Industrial arms use ROS 2 interfaces to allow researchers to bypass the proprietary controller and send direct motor commands.
 3.  **Self-Driving Cars (Autoware)**: A massive graph of over 100 nodes handling everything from Lidar point cloud processing to traffic light detection.
 
-### Common Pitfalls & Design Trade-offs
+### Reliability vs. Speed
 
 *   **Trade-off: Latency vs. Reliability**:
     *   *TCP (Reliable)*: Good for parameters and setup. Bad for real-time control (retries cause lag).
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     *   Putting all your code in one giant node defeats the purpose of ROS.
     *   *Solution*: Break functionality into small, focused nodes (Single Responsibility Principle).
 
-### Mini Project / Lab
+### Lab: Verify the System
 
 **Task**: Verify your Nervous System.
 
@@ -188,7 +188,7 @@ if __name__ == '__main__':
 **Tools Required**:
 *   ROS 2 Installation
 
-### Review & Checkpoints
+### Summary
 
 *   **Analogy**: ROS 2 is the Nervous System.
 *   **Unit**: The Node is the basic unit of computation.

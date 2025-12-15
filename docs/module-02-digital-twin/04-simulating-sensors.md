@@ -16,7 +16,7 @@ tags: [sensors, lidar, camera, imu, ros2, simulation, perception]
 4.  **Understand** the challenges and limitations of sensor simulation (noise, accuracy, computational cost).
 :::
 
-### Concept Overview
+### Virtual Eyes and Ears
 
 A robot is only as good as its perception. In the real world, robots rely on physical sensors like cameras, LiDAR, and IMUs to understand their environment. In a digital twin, these physical sensors are replaced by **virtual sensors**. These virtual sensors are not merely cameras rendering a scene; they are models that simulate the *physical process* of sensing, including noise, latency, and environmental interactions.
 
@@ -25,7 +25,7 @@ For Physical AI, accurate sensor simulation is critical. It allows us to:
 *   Generate massive datasets for training deep learning models.
 *   Experiment with novel sensor placements and configurations.
 
-### System-Level Intuition
+### The VR Headset for Robots
 
 Imagine the digital twin as a **Virtual Reality Headset for a Robot**.
 
@@ -37,7 +37,7 @@ Imagine the digital twin as a **Virtual Reality Headset for a Robot**.
 **Analogy**:
 If the digital twin is the world, then simulated sensors are the robot's **nervous system for perception**. They translate the physical state of the digital world into information the robot can process.
 
-### Theory & Fundamentals
+### Noise, Drift, and Bias
 
 #### 1. Sensor Models
 A sensor model is a mathematical description of how a sensor converts physical phenomena into measurable data.
@@ -64,7 +64,7 @@ A sensor model is a mathematical description of how a sensor converts physical p
     *   *Physics*: Directly uses robot's rigid body dynamics from the physics engine.
     *   *Parameters*: Noise densities for gyroscope and accelerometer.
 
-### Architecture & Components
+### Plugins & Scripts
 
 #### 1. Gazebo Sensor Plugins
 Gazebo uses dedicated C++ plugins to simulate sensors. These plugins are attached to links in the URDF/SDF.
@@ -110,7 +110,7 @@ In Unity, sensor simulation is typically handled by C# scripts attached to GameO
 *   **LiDAR/Raycasting**: Custom scripts can perform multiple `Physics.Raycast` calls to simulate LiDAR beams, accumulating hit points into a point cloud.
 *   **IMU**: The `Rigidbody` component provides linear and angular velocities, which can be sampled and published.
 
-### Diagrams
+### Perception Pipeline
 
 ```mermaid
 graph TD
@@ -136,7 +136,7 @@ graph TD
     classDef ros fill:#c8e6c9,stroke:#66bb6a,stroke-width:2px;
 ```
 
-### Algorithms & Models
+### Ray Casting & Projection
 
 #### 1. Ray Casting for LiDAR
 LiDAR simulation primarily uses ray casting. A series of rays are cast from the sensor origin into the environment, and the distance to the first intersection point is recorded.
@@ -161,7 +161,7 @@ $$
 \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = \frac{1}{Z} \begin{bmatrix} f_x & 0 & c_x \\ 0 & f_y & c_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} R & t \\ 0 & 1 \end{bmatrix} \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix}
 $$
 
-### Code Examples
+### Configuring Lidar in XML
 
 #### 1. Gazebo LiDAR Sensor XML Configuration
 This config defines a simple 360-degree LiDAR with 720 samples horizontally and a range of 0.1m to 10m, with some Gaussian noise.
@@ -276,13 +276,13 @@ public class SimpleLidarSimulator : MonoBehaviour
 }
 ```
 
-### Practical Applications
+### Testing Without Hardware
 
 *   **Autonomous Mobile Robots**: Simulating LiDAR and camera data for SLAM (Simultaneous Localization and Mapping) and navigation algorithm development.
 *   **Robotic Manipulation**: Using depth cameras (simulated) to enable robots to grasp objects with unknown geometries.
 *   **Drone Inspection**: Simulating camera and IMU data to test flight control and visual inspection routines in dangerous or inaccessible environments.
 
-### Common Pitfalls & Design Trade-offs
+### The Cost of Fidelity
 
 *   **Pitfall: Lack of Fidelity**: Overly simplistic sensor models can lead to algorithms that work perfectly in simulation but fail in the real world.
     *   *Fix*: Incorporate realistic noise models, sensor-specific distortions, and environmental effects.
@@ -291,7 +291,7 @@ public class SimpleLidarSimulator : MonoBehaviour
 *   **Pitfall: Time Synchronization**: Mismatched clock speeds between ROS and simulation can lead to data inconsistencies.
     *   *Fix*: Ensure proper `use_sim_time` configuration in ROS 2 and rely on `ros_gz_bridge` for clock synchronization.
 
-### Mini Project / Lab
+### Lab: Visualizing Rays
 
 **Task**: Integrate a simulated LiDAR into a Gazebo world and visualize its output in RViz.
 
@@ -312,7 +312,7 @@ You should see a representation of the LiDAR scans in RViz, showing the simulate
 *   `ros_gz_sim`, `robot_state_publisher`, `rviz2`
 *   Text editor for URDF/SDF
 
-### Review & Checkpoints
+### Summary
 
 *   **Sensor Fidelity**: Key to successful sim-to-real transfer.
 *   **Noise Models**: Crucial for realistic simulation, not just ideal data.
