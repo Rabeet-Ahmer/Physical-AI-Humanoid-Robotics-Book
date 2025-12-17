@@ -1,88 +1,180 @@
 <!--
 Sync Impact Report:
-- Version change: 1.0.0 -> 1.1.0
-- Principles Enhanced: Deepened requirements for Pedagogy, Rigor, Practical Code, and Platform Compatibility.
-- Principles Added: VIII. Technical Verification via Context7 MCP.
-- Scope: Added explicit structural templates for modules and citation hierarchies.
+Version change: 1.0.0 -> 1.1.0
+Added sections: Detailed subsections for each principle, Acceptance Criteria, Error Handling, Performance Standards, Compliance Requirements
+Removed sections: None
+Templates requiring updates: ⚠ pending - .specify/templates/plan-template.md, .specify/templates/spec-template.md, .specify/templates/tasks-template.md
+Follow-up TODOs: None
 -->
-
-# Physical AI & Humanoid Robotics Textbook Constitution
+# RAG AI Chatbot Constitution
 
 ## Core Principles
 
-### I. Pedagogical Clarity & Structure
-The primary goal is to minimize cognitive load while maximizing retention.
-- **Modular Structure**: Every module MUST follow a consistent archetype:
-  1.  **Learning Objectives**: 3-5 measurable outcomes (Bloom's Taxonomy).
-  2.  **Prerequisites**: Explicit dependency links to prior modules or required mathematical foundations.
-  3.  **Core Concepts**: Theory introduced progressively, starting from intuition before formalization.
-  4.  **Worked Examples**: Step-by-step application of theory.
-  5.  **Challenge/Exercise**: A solvable problem with provided solution visibility toggles.
-  6.  **Summary & Key Takeaways**: Bulleted recap.
-- **Language & Tone**: Use active voice. Define terms upon first use. Maintain a professional yet accessible academic tone. Avoid slang or undefined jargon.
-- **Visual Aids**: Complex concepts (kinematics, control loops) MUST be accompanied by diagrams (Mermaid.js or high-quality SVG) to support dual coding theory.
+### Project Directory
+All backend code must be written within the dedicated folder named **@Hackathon1.0/backend**.
 
-### II. Academic Rigor & Sourcing
-We prioritize accuracy and traceability over simplification.
-- **Source Hierarchy**: Claims must be backed by:
-  1.  Tier 1: Peer-reviewed Journals (e.g., IEEE TRO, Science Robotics) & Top Conferences (ICRA, IROS, RSS).
-  2.  Tier 2: Standard Textbooks & reputable Industry Whitepapers.
-  3.  Tier 3: Pre-prints (ArXiv) - ONLY if no peer-reviewed alternative exists and the work is widely cited.
-- **Citation Format**: Strictly APA 7th Edition. Inline citations `(Author, Year)` are mandatory for all technical claims.
-- **Recency**: Primary sources should be published within the last 10 years, unless referencing foundational laws (e.g., Newton, Asimov) or classic control theory.
+### Python-First Development
+All backend services and components must be implemented in Python as the core language. Python libraries and frameworks are preferred for consistency, maintainability, and team expertise.
 
-### III. Practical Application & Code Examples
-Theory without practice is insufficient for Physical AI.
-- **Executable Code**: All code snippets MUST be valid, executable Python (Version 3.10+).
-- **Environment**: Dependencies must be standard (numpy, scipy, pytorch, mujoco/pybullet) and listed in a module-level `requirements.txt` or preamble.
-- **Commentary**: Code comments must explain the *why* (logic/algorithm choice), not the *what* (syntax).
-- **Reproducibility**: Examples must include seed setting for stochastic processes to ensure students obtain consistent results.
-- **Bridge to Reality**: Every code example must explicitly state how the simulation relates to physical hardware constraints (latency, noise, actuation limits).
+**Requirements:**
+- All backend services must be written in Python 3.9+
+- Use of Python standard libraries and established frameworks is preferred
+- Third-party Python packages must be justified and reviewed
+- Code must follow PEP 8 style guidelines and be formatted with black
 
-### IV. Docusaurus Compatibility & Formatting
-The text is code; formatting determines the student experience.
-- **Markdown Strictness**: Content MUST be valid GFM (GitHub Flavored Markdown) with Docusaurus-specific extensions.
-- **Admonitions**: Use Docusaurus admonitions (`:::note`, `:::tip`, `:::warning`, `:::danger`) effectively:
-  - `NOTE`: Context or side-facts.
-  - `TIP`: Best practices and shortcuts.
-  - `WARNING`: Common pitfalls or mathematical edge cases.
-  - `DANGER`: Actions that could break hardware or simulation stability.
-- **Code Blocks**: Must specify language (e.g., `python`, `bash`) and use title/line-highlighting features where complex logic is introduced.
-- **Math Rendering**: Use LaTeX ($$) for all mathematical notation to ensure proper rendering via KaTeX/MathJax.
+**Rationale:**
+Python provides excellent ecosystem support for AI/ML applications, has strong community support, and integrates well with the specified tech stack.
 
-### V. Content Scope & Focus
-- **Word Count**: strict 3000-5000 words per module to ensure digestibility.
-- **Boundaries**:
-  - **In-Scope**: Applied theory, implementation details, simulation setups, result analysis.
-  - **Out-of-Scope**: Derivations of standard mathematical proofs (cite them instead), history lessons unrelated to technical context, generic programming tutorials (assume Python proficiency).
-- **Depth**: Focus on "First Principles" thinking. Explain *how* a robot balances, not just *that* it balances.
+### Tech Stack Adherence
+Strict adherence to the designated technology stack: uv as package manager, FastAPI[standards] for backend APIs, OpenAI Agents SDK for AI functionality, Qdrant for vector database operations, and Neon Serverless Postgres for relational data storage.
 
-### VI. Development & Documentation Standards
-- **Version Control**: All content changes must be committed via Git with semantic commit messages.
-- **Review**: Peer review focuses on both technical accuracy (Code/Math) and pedagogical flow.
+**Required Technologies:**
+- **Package Management**: uv for fast, secure dependency management
+- **Backend Framework**: FastAPI with standards extras for API development
+- **AI Agents**: OpenAI Agents SDK for building intelligent agents
+- **Vector Database**: Qdrant for RAG operations and embeddings storage
+- **Relational Database**: Neon Serverless Postgres for structured data
 
-### VII. Learning & Assessment Objectives
-- **Assessment Alignment**: Exercises MUST directly test the stated Learning Objectives.
-- **Bloom's Taxonomy**: Exercises should span from "Remember/Understand" (Quiz) to "Apply/Analyze" (Coding Challenge).
+**Acceptance Criteria:**
+- All dependencies must be managed through uv with pyproject.toml and uv.lock files
+- API endpoints must be documented with OpenAPI/Swagger via FastAPI
+- Database connections must use the specified database technologies
+- No unauthorized technology additions without explicit approval
 
-### VIII. Technical Verification & Tooling (Context7 MCP)
-To ensure absolute accuracy in implementation details and platform usage:
-- **Mandatory Fetching**: All technical documentation regarding technology stacks, frameworks, and libraries (specifically Docusaurus, React, Python Robotics libraries, etc.) MUST be fetched dynamically using the **Context7 MCP**.
-- **No Hallucinations**: Reliance on internal training data for API signatures, configuration options, or library features is PROHIBITED.
-- **Verification**: If a feature or configuration parameter is used in the textbook's instructions, it must be verified against the official documentation retrieved via Context7 during the writing process.
+**Requirements:**
+- All functions and classes must have proper type hints
+- Error handling must be comprehensive with appropriate logging
+- Code must be modular with clear separation of concerns
+- Security best practices must be followed (input validation, sanitization, etc.)
+- Scalability considerations must be addressed in architecture decisions
+- Maintainability through clean code practices and documentation
+- Observability through proper logging, monitoring, and metrics
+
+**Rationale:**
+Production-grade code ensures reliability, security, and maintainability of the application over time.
+
+### No Hallucinations Policy
+No hallucinations, assumptions, or incorrect code are allowed. All technical information must be verified through reliable sources like Context7 MCP for tech stack documentation, or web searches for general information.
+
+**Requirements:**
+- All technical claims must be verified through Context7 MCP or reliable sources
+- Code examples must be tested before implementation
+- Documentation must be accurate and up-to-date
+- Assumptions must be explicitly documented and validated
+
+**Error Handling:**
+- When uncertain about technical implementation, consult Context7 MCP first
+- If documentation is unclear, ask for clarification rather than assuming
+- Create issues to track any knowledge gaps for future resolution
+
+### Context7 Documentation Standard
+For any technical information about the tech stack or code documentation, Context7 MCP must be used to fetch accurate, up-to-date technical documentation and avoid assumptions.
+
+**Process:**
+- Before implementing any feature, check Context7 for current best practices
+- Use Context7 for API reference and usage patterns
+- Document Context7 references in code comments when applicable
+- Keep Context7 documentation links in technical decisions
+
+**Compliance:**
+- All technical decisions must reference verified documentation
+- Code reviews must verify documentation alignment
+- New implementations must follow documented patterns
+
+### RAG-Centric Architecture
+All content and document retrieval must leverage the RAG (Retrieval Augmented Generation) architecture with Qdrant vector database storing content as vector embeddings for efficient similarity search and AI-powered responses.
+
+**Architecture Requirements:**
+- Content must be processed into vector embeddings
+- Vector storage must use Qdrant with proper indexing for performance
+- Search functionality must implement semantic similarity matching
+- Response generation must integrate retrieved context with AI agent responses
+
+**Performance Standards:**
+- Vector search response time must be < 200ms for 95% of queries
+- Document ingestion pipeline must handle various formats (PDF, DOCX, TXT, etc.)
+- Embedding generation must be batch-processed for efficiency
+
+## Technology and Infrastructure Standards
+
+### API Standards
+- All APIs must follow RESTful principles where possible
+- OpenAPI documentation must be comprehensive and up-to-date
+- API versioning must follow semantic versioning (v1, v2, etc.)
+- Response formats must be consistent JSON with proper error handling
+- HTTP status codes must be used appropriately
+
+### Performance Standards
+- API response times must be < 500ms for 95% of requests
+- Database queries must be optimized with proper indexing
+- Vector search performance must be monitored and optimized
+- Caching strategies must be implemented for frequently accessed data
+
+### Database Standards
+- Database schema changes must be version controlled and migration-managed
+- Connection pooling must be implemented for efficiency
+- Query optimization must be performed regularly
+- Data retention policies must be defined and enforced
+
+## Development Workflow
+
+### Code Quality Standards
+- Type hints must be used for all public interfaces and strongly encouraged for private functions
+- Documentation must be provided for all public functions/classes using docstrings
+- Code must follow PEP 8 style guidelines and be formatted with black
+- Unit tests must be written for all business logic
+- Code complexity must be kept reasonable (avoid deeply nested functions)
+
+### Review Process
+- All pull requests must have at least one peer review
+- Automated tests must pass before merging
+- Code coverage must not decrease
+- Security scans must pass
+- Documentation updates must be included when applicable
+
+### Dependency Management
+- Dependencies must be managed through uv
+- Security vulnerabilities must be addressed promptly
+- New dependencies must be justified and reviewed
+
+## Quality Assurance
+
+### Acceptance Criteria
+- All features must have clear, testable acceptance criteria
+- User stories must be validated before implementation
+- Performance benchmarks must be met before deployment
+- Security requirements must be verified
+
+### Error Handling
+- All API endpoints must return appropriate error codes
+- Error messages must be informative but not expose internal details
+- Fallback mechanisms must be implemented for critical failures
+- Logging must capture sufficient context for debugging
+
+### Monitoring and Observability
+- Application metrics must be collected and monitored
+- Error tracking must be implemented
+- Performance monitoring must cover all critical paths
+- User activity must be logged for analytics
 
 ## Governance
 
 ### Amendment Process
-Amendments to this Constitution require a documented proposal outlining the rationale, impact on existing content, and migration plan. Changes must be ratified by the project maintainers.
+- This constitution supersedes all other development practices
+- Amendments require explicit documentation and team approval
+- Changes must be communicated to all team members
+- Migration plans must be created for breaking changes
 
-### Versioning
-This Constitution follows Semantic Versioning:
-- **Major**: Fundamental changes to core principles or governance.
-- **Minor**: Additions or clarifications that do not contradict existing principles.
-- **Patch**: Typo fixes or formatting changes.
+### Compliance Verification
+- All pull requests must verify compliance with these principles
+- Regular audits must be conducted to ensure adherence
+- Non-compliance issues must be addressed promptly
+- Use of external libraries must align with the approved tech stack unless specifically justified
 
-### Compliance
-All contributions to the textbook (content, code, configuration) must be verified against these principles. Non-compliant contributions will be rejected.
+### Versioning Policy
+- Constitution versioning follows semantic versioning principles
+- MAJOR version changes require team approval and migration planning
+- MINOR changes should be backward compatible
+- PATCH changes are for clarifications and minor adjustments
 
-**Version**: 1.1.0 | **Ratified**: 2025-12-10 | **Last Amended**: 2025-12-10
+**Version**: 1.1.0 | **Ratified**: 2025-12-15 | **Last Amended**: 2025-12-15
