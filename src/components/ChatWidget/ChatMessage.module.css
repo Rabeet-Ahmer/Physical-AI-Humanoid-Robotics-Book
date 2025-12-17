@@ -1,0 +1,59 @@
+/* src/components/ChatWidget/ChatMessage.module.css */
+
+.chatMessageContainer {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.userMessage {
+  justify-content: flex-end;
+}
+
+.chatbotMessage {
+  justify-content: flex-start;
+}
+
+.messageBubble {
+  max-width: 75%;
+  padding: 8px 12px;
+  border-radius: var(--ifm-border-radius);
+  word-wrap: break-word;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  position: relative; /* For timestamp positioning */
+}
+
+.userMessage .messageBubble {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  margin-left: auto; /* Push to the right */
+}
+
+.chatbotMessage .messageBubble {
+  background-color: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+  border: 1px solid var(--ifm-contents-border-color);
+  margin-right: auto; /* Push to the left */
+}
+
+.messageSender {
+  font-weight: bold;
+  margin-bottom: 4px;
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.messageText {
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
+.messageTimestamp {
+  font-size: 0.7em;
+  color: rgba(255, 255, 255, 0.7); /* Lighter color for user messages */
+  text-align: right;
+  margin-top: 5px;
+}
+
+.chatbotMessage .messageTimestamp {
+  color: var(--ifm-color-gray-600); /* Darker for chatbot messages */
+}

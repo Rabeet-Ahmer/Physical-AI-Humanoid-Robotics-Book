@@ -1,0 +1,112 @@
+/* src/components/ChatWidget/ChatPanel.module.css */
+
+.chatPanelContainer {
+  position: fixed;
+  bottom: 80px; /* Adjust to be above the chat icon */
+  right: 20px;
+  width: 350px; /* Fixed width */
+  height: 500px; /* Fixed height */
+  background-color: var(--ifm-background-color);
+  border: 1px solid var(--ifm-contents-border-color);
+  border-radius: var(--ifm-border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  z-index: 999; /* Slightly lower than icon */
+  overflow: hidden;
+  font-family: var(--ifm-font-family-base);
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* For closing animation, though React handles display:none */
+.chatPanelContainer.closed {
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+.chatPanelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: var(--ifm-color-primary-dark);
+  color: white;
+  border-bottom: 1px solid var(--ifm-contents-border-color);
+}
+
+.chatPanelHeader h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.chatPanelBody {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background-color: var(--ifm-background-surface-color);
+  display: flex;
+  flex-direction: column; /* Messages stack vertically */
+}
+
+.chatPanelFooter {
+  display: flex;
+  padding: 10px 15px;
+  border-top: 1px solid var(--ifm-contents-border-color);
+  background-color: var(--ifm-background-surface-color);
+}
+
+.chatInput {
+  flex-grow: 1;
+  border: 1px solid var(--ifm-color-gray-300);
+  border-radius: var(--ifm-border-radius);
+  padding: 8px 12px;
+  margin-right: 10px;
+  font-size: 0.9rem;
+}
+
+.chatInput:focus {
+  outline: none;
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 2px rgba(var(--ifm-color-primary-rgb), 0.2);
+}
+
+.sendButton {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--ifm-border-radius);
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.sendButton:hover {
+  background-color: var(--ifm-color-primary-dark);
+}
+
+.loadingIndicator {
+  text-align: center;
+  padding: 10px;
+  font-style: italic;
+  color: var(--ifm-color-gray-600);
+}
+
+.noMessages {
+  text-align: center;
+  padding: 20px;
+  color: var(--ifm-color-gray-600);
+  font-style: italic;
+}
