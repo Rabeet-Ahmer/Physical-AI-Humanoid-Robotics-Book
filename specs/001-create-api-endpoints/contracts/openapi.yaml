@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  title: Agent API
+  version: 1.0.0
+  description: API for interacting with the backend AI agent.
+paths:
+  /agent:
+    post:
+      summary: Query the Agent
+      operationId: queryAgent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserQuery'
+      responses:
+        '200':
+          description: Successful response from the agent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentResponse'
+        '422':
+          description: Validation Error
+components:
+  schemas:
+    UserQuery:
+      type: object
+      required:
+        - user
+      properties:
+        user:
+          type: string
+          description: The user's query
+          minLength: 1
+    AgentResponse:
+      type: object
+      required:
+        - assistant
+      properties:
+        assistant:
+          type: string
+          description: The agent's response
