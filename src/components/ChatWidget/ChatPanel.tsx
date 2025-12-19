@@ -10,9 +10,54 @@ const ChatPanel: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Resize logic state and refs
+  const [width, setWidth] = useState<number>(350);
+  const isResizing = useRef<boolean>(false);
+  const startX = useRef<number>(0);
+  const startWidth = useRef<number>(0);
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatState.history]);
+
+  // Resize handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isResizing.current = true;
+    startX.current = e.clientX;
+    startWidth.current = width;
+    document.body.style.cursor = 'ew-resize';
+    e.preventDefault(); // Prevent selection
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isResizing.current) return;
+      
+      // Moving mouse left (decreasing x) should increase width (growing leftwards)
+      const delta = startX.current - e.clientX; 
+      const newWidth = startWidth.current + delta;
+
+      // Constraints: Min 300px, Max 800px
+      if (newWidth >= 300 && newWidth <= 800) {
+        setWidth(newWidth);
+      }
+    };
+
+    const handleMouseUp = () => {
+      if (isResizing.current) {
+        isResizing.current = false;
+        document.body.style.cursor = 'default';
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, []); // Refs ensure we don't need dependencies here
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,7 +99,13 @@ const ChatPanel: React.FC = () => {
   }
 
   return (
-    <div className={styles.chatPanelContainer} aria-live="polite" aria-relevant="additions text">
+    <div 
+      className={styles.chatPanelContainer} 
+      aria-live="polite" 
+      aria-relevant="additions text"
+      style={{ width: `${width}px` }}
+    >
+      <div className={styles.resizeHandle} onMouseDown={handleMouseDown} />
       <div className={styles.chatPanelHeader}>
         <h3>AI Chatbot</h3>
         <button onClick={toggleChat} className={styles.closeButton} aria-label="Close chat widget">
@@ -69,7 +120,13 @@ const ChatPanel: React.FC = () => {
             <ChatMessage key={index} message={message} />
           ))
         )}
-        {isLoading && <p className={styles.loadingIndicator}>Thinking...</p>}
+        {isLoading && (
+          <div className={styles.typingIndicator}>
+            <div className={styles.typingDot}></div>
+            <div className={styles.typingDot}></div>
+            <div className={styles.typingDot}></div>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
       <form className={styles.chatPanelFooter} onSubmit={handleSendMessage}>
