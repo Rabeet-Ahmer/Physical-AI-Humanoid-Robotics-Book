@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import useLocalStorage from '../../hooks/useLocalStorage'; // Adjust path as needed
 
 // Define interfaces for ChatMessage and ChatUIState
 export type ChatSender = 'user' | 'chatbot';
@@ -31,8 +30,8 @@ interface ChatProviderProps {
 }
 
 export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
-  // Use useLocalStorage to persist the chat state
-  const [chatState, setChatState] = useLocalStorage<ChatUIState>('docusaurus-chat-state', {
+  // Use useState for transient UI state (backend handles session memory)
+  const [chatState, setChatState] = useState<ChatUIState>({
     isOpen: false,
     history: [],
   });

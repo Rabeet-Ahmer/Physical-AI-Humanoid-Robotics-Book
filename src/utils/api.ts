@@ -5,6 +5,7 @@ const API_ENDPOINT = 'http://127.0.0.1:8000/agent'; // As per quickstart.md and 
 
 interface ChatApiRequest {
   user: string;
+  session_id: string; // Add session_id
 }
 
 interface ChatApiResponse {
@@ -14,12 +15,13 @@ interface ChatApiResponse {
 /**
  * Calls the backend RAG agent API to get a chatbot response.
  * @param message The user's message to send to the chatbot.
+ * @param sessionId The unique ID for the current chat session.
  * @returns A promise that resolves to the chatbot's response text.
  * @throws An error if the API call fails or returns an invalid response.
  */
-export async function callChatApi(message: string): Promise<string> {
+export async function callChatApi(message: string, sessionId: string): Promise<string> {
   try {
-    const requestBody: ChatApiRequest = { user: message };
+    const requestBody: ChatApiRequest = { user: message, session_id: sessionId }; // Include session_id
 
     const response = await fetch(API_ENDPOINT, {
       method: 'POST',

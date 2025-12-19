@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { useChat, ChatMessage as TChatMessage } from './ChatContext';
 import ChatMessage from './ChatMessage';
 import { callChatApi } from '../../utils/api'; // Import the API utility
@@ -9,6 +9,9 @@ const ChatPanel: React.FC = () => {
   const [inputMessage, setInputMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Generate a unique session ID for this chat session
+  const sessionId = useMemo(() => crypto.randomUUID(), []);
 
   // Resize logic state and refs
   const [width, setWidth] = useState<number>(350);
@@ -72,7 +75,7 @@ const ChatPanel: React.FC = () => {
       setIsLoading(true);
 
       try {
-        const botResponseText = await callChatApi(userMessage.text);
+        const botResponseText = await callChatApi(userMessage.text, sessionId); // Pass sessionId
         const botMessage: TChatMessage = {
           text: botResponseText,
           sender: 'chatbot',
