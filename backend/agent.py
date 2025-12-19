@@ -122,7 +122,7 @@ def create_agent() -> Agent:
             "Cite the source URLs provided by the tool in your answer."
         ),
         tools=[search_knowledge_base],
-        model=model
+        model=model,
     )
 
 import sys
