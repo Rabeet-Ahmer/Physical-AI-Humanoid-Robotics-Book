@@ -1,7 +1,7 @@
 // src/utils/api.ts
 
 // Define the API endpoint for the RAG agent
-const API_ENDPOINT = 'http://127.0.0.1:8000/agent'; // As per quickstart.md and contracts/README.md
+const API_ENDPOINT = process.env.NEXT_PUBLIC_RAG_API_URL || 'http://127.0.0.1:8000/agent'; // As per quickstart.md and contracts/README.md
 
 interface ChatApiRequest {
   user: string;
@@ -28,8 +28,15 @@ export async function callChatApi(message: string, sessionId: string): Promise<s
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include', // Send cookies (Better Auth session)
       body: JSON.stringify(requestBody),
     });
+
+    if (response.status === 401) {
+       // Redirect to login or throw specific error
+       window.location.href = '/sign-in';
+       throw new Error('Unauthorized: Please log in.');
+    }
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));

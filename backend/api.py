@@ -3,7 +3,7 @@ import os
 from contextlib import asynccontextmanager
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, status, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -36,23 +36,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger("api")
 
-# --- Lifespan Context ---
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """
-    Handle application startup and shutdown events.
-    """
-    logger.info("Starting up Agent API...")
-    # Place for startup logic (e.g. DB connections, model pre-loading)
-    yield
-    logger.info("Shutting down Agent API...")
-
 # --- Application Initialization ---
 app = FastAPI(
     title=settings.APP_NAME,
     description="Professional REST API for interacting with the RAG-enabled AI Agent.",
     version=settings.APP_VERSION,
-    lifespan=lifespan,
     docs_url="/docs",
     redoc_url="/redoc"
 )

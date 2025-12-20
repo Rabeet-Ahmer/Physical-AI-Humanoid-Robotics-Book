@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: Hackathon Chatbot API
+  version: 1.0.0
+  description: Protected API for Chatbot interaction.
+paths:
+  /chat:
+    post:
+      summary: Send a message to the chatbot
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                history:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      role:
+                        type: string
+                      content:
+                        type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+        '401':
+          description: Unauthorized (Invalid or missing session)
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: better-auth.session_token
