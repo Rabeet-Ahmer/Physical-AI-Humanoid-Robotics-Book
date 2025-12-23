@@ -26,15 +26,8 @@ export async function callChatApi(message: string, sessionId: string): Promise<s
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include', // Send cookies (Better Auth session)
       body: JSON.stringify(requestBody),
     });
-
-    if (response.status === 401) {
-       // Redirect to login or throw specific error
-       window.location.href = '/sign-in';
-       throw new Error('Unauthorized: Please log in.');
-    }
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({ message: 'Unknown error' }));
