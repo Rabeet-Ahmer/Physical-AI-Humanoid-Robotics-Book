@@ -38,15 +38,9 @@ export default function HomepageHeader() {
             {/* Call-to-Action Buttons - T019 */}
             <div className={styles.buttons}>
               <CTAButton
-                text="Sign Up to Read →"
-                to="/sign-up"
+                text="Read the Book →"
+                to="/docs/intro"
                 styleType="primary"
-              />
-              <CTAButton
-                text="Sign In"
-                to="/sign-in"
-                styleType="secondary"
-                icon="🔑"
               />
             </div>
           </div>
