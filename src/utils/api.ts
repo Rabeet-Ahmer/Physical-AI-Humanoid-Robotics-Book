@@ -2,11 +2,12 @@
 
 // Define the API endpoint for the RAG agent
 // Safely check for process.env to avoid ReferenceError in browser
-const API_ENDPOINT =
-  process.env.NEXT_PUBLIC_RAG_API_URL ||
-  (process.env.NODE_ENV === "development"
-    ? "http://127.0.0.1:8000/agent"
-    : undefined);
+const isDevelopment = typeof process !== "undefined" && process.env && process.env.NODE_ENV === "development";
+const envApiUrl = typeof process !== "undefined" && process.env ? process.env.NEXT_PUBLIC_RAG_API_URL : undefined;
+
+const API_ENDPOINT = envApiUrl || (isDevelopment ? "http://127.0.0.1:8000/agent" : "http://127.0.0.1:8000/agent");
+// Note: In production, if NEXT_PUBLIC_RAG_API_URL is not set, it defaults to localhost which will fail. 
+// You should ensure the environment variable is set or update this default to your production backend URL.
 
 interface ChatApiRequest {
   user: string;
