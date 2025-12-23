@@ -21,6 +21,5 @@ export const auth = betterAuth({
     "http://localhost:3000",
     "http://localhost:3001", 
     "https://physical-ai-humanoid-robotics-book-coral-seven.vercel.app",
-    process.env.FRONTEND_URL || "",
   ],
 });

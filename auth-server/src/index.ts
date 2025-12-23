@@ -9,7 +9,7 @@ const app = new Hono();
 app.use(
   "*",
   cors({
-    origin: ["http://localhost:3001", "https://physical-ai-humanoid-robotics-book-coral-seven.vercel.app", process.env.FRONTEND_URL || ""], // Docusaurus frontend
+    origin: ["http://localhost:3000", "https://physical-ai-humanoid-robotics-book-coral-seven.vercel.app"], // Docusaurus frontend
     allowHeaders: ["Content-Type", "Authorization"],
     allowMethods: ["POST", "GET", "OPTIONS"],
     exposeHeaders: ["Content-Length"],
@@ -22,10 +22,14 @@ app.on(["POST", "GET"], "/api/auth/**", (c) => {
   return auth.handler(c.req.raw);
 });
 
-const port = 3000;
-console.log(`Auth Server running on http://localhost:${port}`);
+// For local development
+if (process.env.NODE_ENV !== "production") {
+  const port = 3001;
+  console.log(`Auth Server running locally on http://localhost:${port}`);
+  serve({
+    fetch: app.fetch,
+    port,
+  });
+}
 
-serve({
-  fetch: app.fetch,
-  port,
-});
+export default app;
