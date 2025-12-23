@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "rewrites": [
-    {
-      "source": "/api/auth/(.*)",
-      "destination": "/src/index.ts"
-    }
-  ]
-}

@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { serve } from "@hono/node-server";
 import { cors } from "hono/cors";
-import { auth } from "./auth.js";
+import { auth } from "../src/auth.js";
 import "dotenv/config";
 
 const app = new Hono();
