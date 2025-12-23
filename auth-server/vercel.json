@@ -5,10 +5,5 @@
       "source": "/api/auth/(.*)",
       "destination": "/src/index.ts"
     }
-  ],
-  "functions": {
-    "src/index.ts": {
-      "runtime": "vercel-node@latest"
-    }
-  }
+  ]
 }
