@@ -1,13 +1,5 @@
 // src/utils/api.ts
 
-// Define the API endpoint for the RAG agent
-// Safely check for process.env to avoid ReferenceError in browser
-const isDevelopment = typeof process !== "undefined" && process.env && process.env.NODE_ENV === "development";
-const envApiUrl = typeof process !== "undefined" && process.env ? process.env.NEXT_PUBLIC_RAG_API_URL : undefined;
-
-const API_ENDPOINT = envApiUrl || (isDevelopment ? "http://127.0.0.1:8000/agent" : "http://127.0.0.1:8000/agent");
-// Note: In production, if NEXT_PUBLIC_RAG_API_URL is not set, it defaults to localhost which will fail. 
-// You should ensure the environment variable is set or update this default to your production backend URL.
 
 interface ChatApiRequest {
   user: string;
@@ -29,7 +21,7 @@ export async function callChatApi(message: string, sessionId: string): Promise<s
   try {
     const requestBody: ChatApiRequest = { user: message, session_id: sessionId }; // Include session_id
 
-    const response = await fetch(API_ENDPOINT, {
+    const response = await fetch("https://rabeet-ahmer-hackathon1-0.hf.space/agent", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
